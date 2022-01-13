@@ -146,3 +146,22 @@ def test_bdfg_batch():
     key_multi_0, key_multi_1 = verifier.new_multi_key(shifts_0), verifier.new_multi_key(shifts_1)
     key = verifier.new_batch_key([key_multi_0, key_multi_1])
     assert verifier.verifiy_batch(proof, key)
+
+def test_gw_single():
+
+    n = 3
+    KZG = kzg_setup(12)
+    prover, verifier = KZG.prover_gw(), KZG.verifier_gw()
+
+    p_0_x = Polynomial.rand(1 << n)
+    p_1_x = Polynomial.rand(1 << n)
+    p_2_x = Polynomial.rand(1 << n)
+    p_3_x = Polynomial.rand(1 << n)
+
+    polys = [p_0_x, p_1_x, p_2_x, p_3_x]
+    shifts_0 = [1, 2, 3, 10, 11]
+    prover_key = prover.new_single_key(polys, shifts_0)
+    proof = prover.create_proof_single(prover_key)
+
+    verifier_key = verifier.new_single_key(shifts_0)
+    assert verifier.verify_single(proof, verifier_key)

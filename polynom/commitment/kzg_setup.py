@@ -1,6 +1,8 @@
 from __future__ import annotations
 from polynom.commitment.bdfg.prover import BDFGProver
 from polynom.commitment.bdfg.verifier import BDFGVerifier
+from polynom.commitment.gw.prover import GWProver
+from polynom.commitment.gw.verifier import GWVerifier
 from polynom.commitment.gwc.gwc import GWCProver, GWCVerifier
 from polynom.commitment.kzg import KZGProver, KZGVerifier
 from polynom.ecc import Point
@@ -51,3 +53,9 @@ class KZGSetup:
 
     def verifier_bdfg(self) -> BDFGVerifier:
         return BDFGVerifier(self.hasher, self.G_1, self.X_2, self.domain.w())
+
+    def prover_gw(self) -> GWProver:
+        return GWProver(self.hasher, self.bases, self.domain)
+
+    def verifier_gw(self) -> GWVerifier:
+        return GWVerifier(self.hasher, self.G_1, self.X_2, self.domain.w())
