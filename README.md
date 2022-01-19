@@ -5,6 +5,7 @@ Includes various KZG based multi opening systems
 * Original KZG
 * Section 3 of [PLONK](https://eprint.iacr.org/2019/953.pdf)
 * [Efficient polynomial commitment schemes for multiple points and polynomials](https://eprint.iacr.org/2020/081.pdf)
+* Section 5 of [fflonk](https://eprint.iacr.org/2021/1167.pdf)
 
 ```python
 def test_kzg_batch():
